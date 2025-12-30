@@ -1,45 +1,16 @@
-// import { defineConfig } from "vite";
-// import react from "@vitejs/plugin-react-swc";
-// import path from "path";
-// import { componentTagger } from "FishMart-tagger";
-
-// // https://vitejs.dev/config/
-// export default defineConfig(({ mode }) => ({
-//   server: {
-//     host: "::",
-//     port: 8080,
-//   },
-//   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
-//   resolve: {
-//     alias: {
-//       "@": path.resolve(__dirname, "./src"),
-//     },
-//   },
-// }));
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "FishMart-tagger";
 
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: "/", // ✅ VERY IMPORTANT for Vercel (404 fix)
+export default defineConfig({
+  // 🔥 Required for Vercel & production
+  base: "/",
 
-  server: {
-    host: "::",
-    port: 8080,
-  },
-
-  plugins: [
-    react(),
-    mode === "development" && componentTagger(),
-  ].filter(Boolean),
+  plugins: [react()],
 
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-}));
-
+});
